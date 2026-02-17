@@ -22,6 +22,8 @@ def read_root():
 
 @app.post("/upload")
 async def upload_file(file:UploadFile = File(...)):
+    
+    db=database.SessionLocal()
 
     file_content = await file.read()
     text = extract_text_from_pdf(file_content)
